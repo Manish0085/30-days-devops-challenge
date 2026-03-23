@@ -71,8 +71,12 @@ git_push() {
 }
 
 
-
-
+main() {
+    init_repo
+    git_add
+    git_commit
+    git_push
+}
 
 
 main "$@"
