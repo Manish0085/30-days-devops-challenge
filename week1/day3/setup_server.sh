@@ -7,7 +7,7 @@
 # Description: SSH into EC2 and setup Docker + Java automatically
 # =============================================================================
 
-TARGET_IP="52.66.205.142"
+TARGET_IP="13.201.123.88"
 PEM_FILE="/home/ubuntu/Shell-Scripting.pem"
 SSH_USER="ubuntu"
 
