@@ -1,0 +1,53 @@
+version: "3.8"
+
+
+services:
+  expanse-backend:
+    build:
+      context: ./ai-expanse-tacker
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres    
+    env_file: 
+      - ./ai-expanse-tacker/.env
+    networks:
+      - expanse-network    
+  
+
+  expanse-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    env_file:
+      - ./frontend/.env
+    depends_on:
+      - expanse-backend   
+    networks:
+      - expanse-network 
+
+
+  postgres:
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=expansedb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - expanse-network
+
+
+networks:
+  expanse-network:
+    driver: bridge  
+  
+
+volumes:
+  postgres-data:  
+
+
