@@ -1,0 +1,50 @@
+version: "3.8"
+
+
+services:
+  backend:
+    build:
+      context: ./Ecommerce-Backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    env_file:
+      - ./Ecommerce-Backend/.env
+    networks:
+      - ecommerce
+
+
+  frontend:
+    build:
+      context: ./Ecommerce-Frontend
+      dockerfile: Dockerfile
+    ports: 
+      - "5173:80"
+    depends_on:
+      - backend
+    env_file:
+      - ./Ecommerce-Frontend/.env
+    networks:
+      - ecommerce
+
+  postgres:
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=ecommerce
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - ecommerce
+
+
+networks:
+  ecommerce:
+    driver: bridge
+
+
+volumes:
+  postgres-data:  
