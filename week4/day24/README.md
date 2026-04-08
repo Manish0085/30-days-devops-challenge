@@ -1,6 +1,6 @@
 # 🚀 Kubernetes Architecture — Explained
 
-![Uploading k8s-architecture.png.png…]()
+![Kubernetes Architecture](./k8s-architecture.png)
 
 This repository contains a simple and clear explanation of Kubernetes Architecture, covering all core components and how they work together in a cluster.
 
